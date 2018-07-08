@@ -32,34 +32,30 @@ public class RangingActivity extends AppCompatActivity implements CBRangingListe
 
     private static final String TAG = RangingActivity.class.getSimpleName();
     private Cubeacon cubeacon;
-    private GridView listView;
-    private SimpleAdapter adapter;
-    private List<Map<String, String>> data;
+    private GridView gridview;
     private List<CBBeacon> beacons;
-    private int previousSelectedPosition;
+
+    RangingAdapter adapter;
+    List<RangingModel> rangingModels = new ArrayList<RangingModel>();
+    String title, subtitle, status;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ranging);
-
-        // assign view
-        listView = (GridView) findViewById(R.id.listview);
-
-        // set default adapter
-        String[] from = new String[]{"title", "subtitle", "status"};
-        int[] to = new int[]{R.id.title, R.id.subtitle, R.id.status};
-        data = new ArrayList<>();
-        adapter = new SimpleAdapter(this, data, R.layout.listview_item, from, to);
-
-        // set adapter to listview
-        listView.setAdapter(adapter);
-
-
+        gridview = (GridView) findViewById(R.id.gridView);
+        RangingAdapter adapter = new RangingAdapter(this, R.layout.gridview_items, rangingModels);
+        gridview.setAdapter(adapter);
         // set listview on item click listener
-        listView.setOnItemClickListener(this);
+        gridview.setOnItemClickListener(this);
+
 
         // assign local instance of Cubeacon manager
         cubeacon = Cubeacon.getInstance();
+    }
+
+    private void setRangingData(List<RangingModel> list, String title, String subtitle, String status){
+        list.add(new RangingModel(title, subtitle, status));
     }
 
     @Override
@@ -97,39 +93,32 @@ public class RangingActivity extends AppCompatActivity implements CBRangingListe
     public void didRangeBeaconsInRegion(final List<CBBeacon> beacons, CBRegion region) {
         this.beacons = beacons;
 
-        String title, subtitle, status,PRI;
-        Map<String, String> map;
+        rangingModels.clear();
 
-        // clear data
-        data.clear();
         for (CBBeacon beacon : beacons) {
-            status = "Status = FAR";
+            status = "FAR";
             title = beacon.getProximityUUID().toString().toUpperCase();
             subtitle = String.format(Locale.getDefault(), "Distance:%.2fm", beacon.getAccuracy());
             Log.d(TAG, "didRangeBeaconsInRegion: " + beacon.getAccuracy());
 
-
             // menampilkan status distance
             if (beacon.getAccuracy() < 0.5 ) {
-                status = "Status = IMMEDIATE";
-                listView.setBackgroundColor(Color.parseColor("#FF9AD082"));
+                status = "IMMEDIATE";
+//                listView.setBackgroundColor(Color.parseColor("#FF9AD082"));
             }
-
-            map = new HashMap<>();
-            map.put("title", title);
-            map.put("subtitle", subtitle);
-            map.put("status", status);
-            data.add(map);
+            setRangingData(rangingModels, title, subtitle, status);
         }
+
+//        adapter.setRangingItems(rangingModels);
 
         // update view using runnable
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                adapter.notifyDataSetChanged();
-                if (getSupportActionBar() != null) {
-                    getSupportActionBar().setSubtitle("Amount Cubical Dosen : " + beacons.size());
-                }
+                gridview.invalidateViews();
+                    if (getSupportActionBar() != null) {
+                        getSupportActionBar().setSubtitle("Amount Cubical Dosen : " + beacons.size());
+                    }
             }
         });
     }

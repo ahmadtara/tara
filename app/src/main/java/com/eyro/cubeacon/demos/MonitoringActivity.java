@@ -40,7 +40,7 @@ public class MonitoringActivity extends AppCompatActivity implements CBServiceLi
         TextView textRegion = (TextView) findViewById(R.id.region);
 
         // set default value of region text
-        String region = String.format(Locale.getDefault(), "\nKode Dosen: %s",
+        String region = String.format(Locale.getDefault(),
                 beacon.getProximityUUID().toString().toUpperCase());
 
 
@@ -51,14 +51,14 @@ public class MonitoringActivity extends AppCompatActivity implements CBServiceLi
         TextView output5 = (TextView) findViewById(R.id.tv_5);
 
         // menampilkan database
-        if (beacon.getProximityUUID().equals("B9407F30-F5F8-466E-AFF9-25556B57FE6D")){
-            output.setText("NIP : 14780044");
-            output2.setText("Nama Dosen : Gita Indah Hapsari, S.T., M.T.");
+        if (beacon.getProximityUUID().toString().toUpperCase().equals("B9407F30-F5F8-466E-AFF9-25556B57FE6D")){
+            output.setText("14780044");
+            output2.setText("Gita Indah Hapsari, S.T., M.T.");
             output3.setText("No HP : +62 852-2227-4099");
             output4.setText("Email : gitaindah@tass.telkomuniversity.ac.id");
             output5.setText("Web : gitaindahhapsari.staff.telkomuniversity.ac.id");
 
-        } else if (beacon.getProximityUUID().equals("E1F54E02-1E23-44E0-9C3D-512EB56ADEC9")){
+        } else {
             output.setText("NIP : 17760060");
             output2.setText("Nama Dosen : Periyadi, S.T., M.T.");
             output3.setText("No HP : +62 851-0161-6015");
@@ -67,7 +67,7 @@ public class MonitoringActivity extends AppCompatActivity implements CBServiceLi
 
         }
 
-        textRegion.setText(getString(R.string.label_region, region));
+        textRegion.setText(region);
 
 
 
