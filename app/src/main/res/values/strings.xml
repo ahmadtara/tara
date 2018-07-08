@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Cubeacon Demos</string>
+    <string name="label_region">Region: %1$s</string>
+    <string name="label_state">State: %1$s</string>
+    <string name="ranging">Detection Cubical Dosen FIT</string>
+    <string name="monitoring">Database Dosen FIT</string>
+</resources>

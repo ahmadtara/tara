@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "78725671500",
+    "firebase_url": "https://android-cubeacon-sample-master.firebaseio.com",
+    "project_id": "android-cubeacon-sample-master",
+    "storage_bucket": "android-cubeacon-sample-master.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:78725671500:android:aef6c186344b3144",
+        "android_client_info": {
+          "package_name": "com.eyro.cubeacon.demos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "78725671500-94ko1hlcj5bajrk3t07v6kth5laetku2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.eyro.cubeacon.demos",
+            "certificate_hash": "6b06683dbfadc1cb2c349edd1ba13d32120032f0"
+          }
+        },
+        {
+          "client_id": "78725671500-3jnb5ttl4h4c7o1gbrg8ql4dhshm7cro.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQw58RsdALCHT757jwv21cy5qHCetfgJs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "78725671500-3jnb5ttl4h4c7o1gbrg8ql4dhshm7cro.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
